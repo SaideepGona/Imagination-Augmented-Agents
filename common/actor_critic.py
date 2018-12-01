@@ -19,7 +19,7 @@ class OnPolicy(nn.Module):
         if deterministic:
             action = probs.max(1)[1]
         else:
-            action = probs.multinomial()
+            action = probs.multinomial(num_samples=1)
         
         return action
     
