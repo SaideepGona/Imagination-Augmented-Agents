@@ -93,7 +93,7 @@ def displayImage(image, step, reward):
 # In[5]:
 
 
-mode = "hunt"
+mode = "regular"
 num_envs = 16
 
 def make_env():
@@ -339,10 +339,12 @@ rollout.states[0].copy_(current_state)
 episode_rewards = torch.zeros(num_envs, 1)
 final_rewards   = torch.zeros(num_envs, 1)
 
-filename1 = "reward_output_1_hunt.txt"
-filename2 = "loss_output_1_hunt.txt"
-f1 = open(filename1,'w')
-f2 = open(filename2,'w')
+os.system("mkdir -p data/{}".format(mode))
+
+filename1 = "data/{}/reward_output_{}_{}.txt".format(mode, rollout_steps, mode)
+filename2 = "data/{}/loss_output_{}_{}.txt".format(mode, rollout_steps, mode)
+f1 = open(filename1, 'w')
+f2 = open(filename2, 'w')
 f1.close()
 f2.close()
 
@@ -406,20 +408,11 @@ for i_update in range(num_frames):
     if i_update % 100 == 0:
         all_rewards.append(final_rewards.mean())
         all_losses.append(loss.data[0])
-        
-        # clear_output(True)
-        plt.figure(figsize=(20,5))
-        plt.subplot(131)
-        plt.title('epoch %s. reward: %s' % (i_update, np.mean(all_rewards[-10:])))
-        plt.plot(all_rewards)
-        plt.subplot(132)
-        plt.title('loss %s' % all_losses[-1])
-        plt.plot(all_losses)
-        plt.show()
+
         re = all_rewards[-1].item()
         lo = all_losses[-1].item()
-        print re
-        print lo
+
+        print "reward: {}, loss: {}, {}% done".format(re, lo, float(i_update)/100)
         with open(filename1, 'a') as out1:
             out1.writelines(str(re)+"\n")
         with open(filename2, 'a') as out2:
@@ -433,8 +426,16 @@ for i_update in range(num_frames):
 # In[ ]:
 
 
-torch.save(actor_critic.state_dict(), "i2a_" + mode)
+torch.save(actor_critic.state_dict(), "i2a_{}_{}".format(mode, rollout_steps))
 
+plt.figure(figsize=(20, 5))
+plt.subplot(131)
+plt.title('epoch vs reward')
+plt.plot(all_rewards)
+plt.subplot(132)
+plt.title('loss')
+plt.plot(all_losses)
+plt.savefig("figures/{}_fig_N_{}".format(mode, rollout_steps))
 
 # In[ ]:
 
