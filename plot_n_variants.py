@@ -11,24 +11,12 @@ Ns = ["1", "2", "3", "4", "5"]
 readin_files_loss = ["data/regular/loss_output_{}_regular.txt".format(x) for x in Ns]
 readin_files_reward = ["data/regular/reward_output_{}_regular.txt".format(x) for x in Ns]
 
-def random_noise_file(filename, n):
-    with open(filename, "w") as out:
-        rand_nums = [str(random.uniform(0,1)) for x in range(n)]
-        out.write("\n".join(rand_nums))
-
 
 def readin(filename):
     data = []
     with open(filename, 'r') as in_file:
         for line in in_file:
             data.append(float(line.rstrip("\n")))
-    return data
-
-
-for n in Ns:    # Generate examples
-    for x in ["loss", "reward"]:
-        f_name = "{}_output_{}_rush.txt".format(x,n)
-        random_noise_file(f_name, 5)
 
 
 colors = ["blue","red","orange","green", "grey"]

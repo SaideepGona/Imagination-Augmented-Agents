@@ -1,0 +1,17 @@
+actor-critic.py:51: UserWarning: Implicit dimension choice for softmax has been deprecated. Change the call to include dim=X as an argument.
+  probs = F.softmax(logit)
+actor-critic.py:32: UserWarning: volatile was removed and now has no effect. Use `with torch.no_grad():` instead.
+  Variable = lambda *args, **kwargs: autograd.Variable(*args, **kwargs).cuda() if USE_CUDA else autograd.Variable(*args, **kwargs)
+actor-critic.py:63: UserWarning: Implicit dimension choice for softmax has been deprecated. Change the call to include dim=X as an argument.
+  probs     = F.softmax(logit)
+actor-critic.py:64: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  log_probs = F.log_softmax(logit)
+actor-critic.py:272: UserWarning: torch.nn.utils.clip_grad_norm is now deprecated in favor of torch.nn.utils.clip_grad_norm_.
+  nn.utils.clip_grad_norm(actor_critic.parameters(), max_grad_norm)
+actor-critic.py:277: UserWarning: invalid index of a 0-dim tensor. This will be an error in PyTorch 0.5. Use tensor.item() to convert a 0-dim tensor to a Python number
+  all_losses.append(loss.data[0])
+QApplication: invalid style override passed, ignoring it.
+
+real	8m54.357s
+user	87m39.581s
+sys	0m21.695s
