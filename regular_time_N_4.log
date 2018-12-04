@@ -1,0 +1,25 @@
+imagination-augmented_agent.py:36: UserWarning: volatile was removed and now has no effect. Use `with torch.no_grad():` instead.
+  Variable = lambda *args, **kwargs: autograd.Variable(*args, **kwargs).cuda() if USE_CUDA else autograd.Variable(*args, **kwargs)
+imagination-augmented_agent.py:255: UserWarning: Implicit dimension choice for softmax has been deprecated. Change the call to include dim=X as an argument.
+  imagined_state  = F.softmax(imagined_state).max(1)[1].data.cpu()
+imagination-augmented_agent.py:256: UserWarning: Implicit dimension choice for softmax has been deprecated. Change the call to include dim=X as an argument.
+  imagined_reward = F.softmax(imagined_reward).max(1)[1].data.cpu()
+/home/kwanho/Documents/Imagination-Augmented-Agents/common/actor_critic.py:17: UserWarning: Implicit dimension choice for softmax has been deprecated. Change the call to include dim=X as an argument.
+  probs = F.softmax(logit)
+/home/kwanho/Documents/Imagination-Augmented-Agents/common/actor_critic.py:29: UserWarning: Implicit dimension choice for softmax has been deprecated. Change the call to include dim=X as an argument.
+  probs     = F.softmax(logit)
+/home/kwanho/Documents/Imagination-Augmented-Agents/common/actor_critic.py:30: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  log_probs = F.log_softmax(logit)
+imagination-augmented_agent.py:389: UserWarning: Implicit dimension choice for softmax has been deprecated. Change the call to include dim=X as an argument.
+  distil_loss = 0.01 * (F.softmax(logit).detach() * F.log_softmax(distil_logit)).sum(1).mean()
+imagination-augmented_agent.py:389: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  distil_loss = 0.01 * (F.softmax(logit).detach() * F.log_softmax(distil_logit)).sum(1).mean()
+imagination-augmented_agent.py:401: UserWarning: torch.nn.utils.clip_grad_norm is now deprecated in favor of torch.nn.utils.clip_grad_norm_.
+  nn.utils.clip_grad_norm(actor_critic.parameters(), max_grad_norm)
+imagination-augmented_agent.py:410: UserWarning: invalid index of a 0-dim tensor. This will be an error in PyTorch 0.5. Use tensor.item() to convert a 0-dim tensor to a Python number
+  all_losses.append(loss.data[0])
+QApplication: invalid style override passed, ignoring it.
+
+real	499m22.214s
+user	785m17.682s
+sys	256m27.093s

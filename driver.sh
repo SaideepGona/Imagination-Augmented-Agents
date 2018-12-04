@@ -2,7 +2,7 @@
 
 set -e
 
-rollout_steps="1 3 5"
+rollout_steps="2 4"
 mode=regular
 
 script=imagination-augmented_agent.py
